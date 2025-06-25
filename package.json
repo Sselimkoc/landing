@@ -1,0 +1,39 @@
+{
+  "name": "modern-business-website-template",
+  "version": "1.0.0",
+  "description": "A professional, responsive website template for small businesses and service providers",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx serve .",
+    "dev": "npx live-server --port=8000",
+    "build": "echo 'No build process required for static template'",
+    "lint": "echo 'No linting configured'",
+    "test": "echo 'No tests configured'"
+  },
+  "keywords": [
+    "website-template",
+    "business-website",
+    "responsive-design",
+    "landing-page",
+    "html-template",
+    "css-template",
+    "vanilla-javascript"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/modern-business-website-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/modern-business-website-template/issues"
+  },
+  "homepage": "https://github.com/yourusername/modern-business-website-template#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+} 
