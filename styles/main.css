@@ -258,6 +258,12 @@ p {
     position: relative;
     padding: var(--spacing-5xl) var(--spacing-2xl);
     overflow: hidden;
+    background: 
+        linear-gradient(135deg, rgba(245, 247, 250, 0.95) 0%, rgba(195, 207, 226, 0.95) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="a" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23d4af37;stop-opacity:0.08"/><stop offset="50%" style="stop-color:%23f4a6cd;stop-opacity:0.04"/><stop offset="100%" style="stop-color:%23e5e4e2;stop-opacity:0.08"/></linearGradient><pattern id="b" patternUnits="userSpaceOnUse" width="120" height="120"><rect width="120" height="120" fill="url(%23a)"/><circle cx="60" cy="60" r="3" fill="%23d4af37" opacity="0.1"/><circle cx="30" cy="30" r="2" fill="%23f4a6cd" opacity="0.1"/><circle cx="90" cy="90" r="2.5" fill="%23e5e4e2" opacity="0.1"/><circle cx="30" cy="90" r="1.5" fill="%23d4af37" opacity="0.08"/><circle cx="90" cy="30" r="1.5" fill="%23f4a6cd" opacity="0.08"/></pattern></defs><rect width="100%" height="100%" fill="url(%23b)"/></svg>');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .hero::before {
@@ -268,9 +274,11 @@ p {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(244, 166, 205, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(229, 228, 226, 0.05) 0%, transparent 50%);
+        radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(244, 166, 205, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(229, 228, 226, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 60% 60%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .hero-content {
@@ -295,7 +303,7 @@ p {
 }
 
 .hero-title {
-    font-size: clamp(var(--font-size-5xl), 8vw, var(--font-size-7xl));
+    font-size: clamp(var(--font-size-6xl), 10vw, var(--font-size-7xl));
     font-weight: 600;
     line-height: 1.1;
     margin-bottom: var(--spacing-xl);
@@ -313,13 +321,22 @@ p {
 .hero-subtitle {
     font-size: var(--font-size-xl);
     color: var(--text-secondary);
-    margin-bottom: var(--spacing-3xl);
+    margin-bottom: var(--spacing-lg);
     font-weight: 400;
     line-height: 1.7;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.hero-tagline {
+    font-size: var(--font-size-lg);
+    color: var(--accent-gold);
+    font-weight: 500;
+    margin-bottom: var(--spacing-3xl);
+    font-style: italic;
+    animation: fadeInUp 0.8s ease-out 0.5s both;
 }
 
 .hero-cta {
@@ -339,6 +356,21 @@ p {
     border-radius: var(--radius-2xl);
     padding: var(--spacing-2xl);
     animation: float 6s ease-in-out infinite;
+    box-shadow: var(--shadow-soft);
+}
+
+.floating-element::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><defs><pattern id="float-pattern" patternUnits="userSpaceOnUse" width="30" height="30"><circle cx="15" cy="15" r="1" fill="%23d4af37" opacity="0.1"/><circle cx="5" cy="5" r="0.5" fill="%23f4a6cd" opacity="0.1"/><circle cx="25" cy="25" r="0.5" fill="%23e5e4e2" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23float-pattern)"/></svg>');
+    border-radius: var(--radius-2xl);
+    opacity: 0.3;
+    pointer-events: none;
 }
 
 .floating-element-1 {
@@ -394,7 +426,7 @@ p {
     background: linear-gradient(135deg, var(--accent-rose), var(--accent-gold));
 }
 
-/* Hero Visual */
+/* Hero Visual - Mockup Design */
 .hero-visual {
     position: absolute;
     right: 5%;
@@ -403,6 +435,100 @@ p {
     z-index: 1;
 }
 
+.hero-mockup {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-3xl);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-premium);
+    animation: slideInRight 1s ease-out 0.8s both;
+}
+
+.mockup-screen {
+    width: 320px;
+    background: var(--white);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+}
+
+.mockup-header {
+    background: var(--gray-100);
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.mockup-dots {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.mockup-dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--gray-400);
+}
+
+.mockup-dots span:nth-child(1) { background: #ff5f57; }
+.mockup-dots span:nth-child(2) { background: #ffbd2e; }
+.mockup-dots span:nth-child(3) { background: #28ca42; }
+
+.mockup-content {
+    padding: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.mockup-card {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+    transition: var(--transition-normal);
+}
+
+.mockup-card:hover {
+    transform: translateX(5px);
+    background: var(--accent-gold);
+    color: var(--white);
+}
+
+.mockup-icon {
+    font-size: var(--font-size-2xl);
+    width: 50px;
+    height: 50px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-soft);
+}
+
+.mockup-text h4 {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.mockup-text p {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.mockup-card:hover .mockup-text h4,
+.mockup-card:hover .mockup-text p {
+    color: var(--white);
+}
+
+/* Hero Visual */
 .hero-cards {
     display: flex;
     flex-direction: column;
@@ -557,7 +683,9 @@ p {
 /* About Section */
 .about {
     padding: var(--spacing-5xl) 0;
-    background: var(--white);
+    background: 
+        linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="about-pattern" patternUnits="userSpaceOnUse" width="50" height="50"><circle cx="25" cy="25" r="1" fill="%23d4af37" opacity="0.03"/><circle cx="10" cy="10" r="0.5" fill="%23f4a6cd" opacity="0.03"/><circle cx="40" cy="40" r="0.5" fill="%23e5e4e2" opacity="0.03"/></pattern></defs><rect width="100%" height="100%" fill="url(%23about-pattern)"/></svg>');
     position: relative;
 }
 
@@ -671,7 +799,9 @@ p {
 /* Services Section */
 .services {
     padding: var(--spacing-5xl) 0;
-    background: var(--gray-50);
+    background: 
+        linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="services-pattern" patternUnits="userSpaceOnUse" width="60" height="60"><rect width="60" height="60" fill="none"/><circle cx="30" cy="30" r="2" fill="%23d4af37" opacity="0.02"/><circle cx="15" cy="15" r="1" fill="%23f4a6cd" opacity="0.02"/><circle cx="45" cy="45" r="1" fill="%23e5e4e2" opacity="0.02"/></pattern></defs><rect width="100%" height="100%" fill="url(%23services-pattern)"/></svg>');
     position: relative;
 }
 
@@ -724,18 +854,25 @@ p {
     transform: scaleX(1);
 }
 
+.service-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
 .service-icon {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     background: linear-gradient(135deg, var(--accent-gold), var(--accent-rose));
     border-radius: var(--radius-2xl);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-2xl);
     color: var(--white);
-    margin-bottom: var(--spacing-xl);
     position: relative;
+    flex-shrink: 0;
 }
 
 .service-icon::after {
@@ -747,10 +884,11 @@ p {
     z-index: -1;
 }
 
-.service-card h3 {
+.service-header h3 {
     font-size: var(--font-size-2xl);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: 0;
     color: var(--text-primary);
+    font-weight: 600;
 }
 
 .service-card p {
@@ -767,23 +905,28 @@ p {
 .service-features li {
     color: var(--text-secondary);
     margin-bottom: var(--spacing-sm);
-    padding-left: var(--spacing-lg);
+    padding-left: 0;
     position: relative;
     font-size: var(--font-size-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
 }
 
-.service-features li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
+.service-features li i {
     color: var(--accent-gold);
     font-weight: 600;
+    font-size: var(--font-size-xs);
+    width: 16px;
+    text-align: center;
 }
 
 /* Portfolio Section */
 .portfolio {
     padding: var(--spacing-5xl) 0;
-    background: var(--white);
+    background: 
+        linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><defs><pattern id="portfolio-pattern" patternUnits="userSpaceOnUse" width="40" height="40"><circle cx="20" cy="20" r="1.5" fill="%23d4af37" opacity="0.02"/><circle cx="8" cy="8" r="0.8" fill="%23f4a6cd" opacity="0.02"/><circle cx="32" cy="32" r="0.8" fill="%23e5e4e2" opacity="0.02"/></pattern></defs><rect width="100%" height="100%" fill="url(%23portfolio-pattern)"/></svg>');
 }
 
 .portfolio-grid {
@@ -863,7 +1006,9 @@ p {
 /* Testimonials Section */
 .testimonials {
     padding: var(--spacing-5xl) 0;
-    background: var(--gray-50);
+    background: 
+        linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><defs><pattern id="testimonials-pattern" patternUnits="userSpaceOnUse" width="60" height="60"><circle cx="30" cy="30" r="2" fill="%23d4af37" opacity="0.015"/><circle cx="15" cy="15" r="1" fill="%23f4a6cd" opacity="0.015"/><circle cx="45" cy="45" r="1" fill="%23e5e4e2" opacity="0.015"/></pattern></defs><rect width="100%" height="100%" fill="url(%23testimonials-pattern)"/></svg>');
 }
 
 .testimonials-grid {
@@ -939,10 +1084,11 @@ p {
 /* Contact Section */
 .contact {
     padding: var(--spacing-5xl) 0;
-    background: var(--primary-dark);
-    color: var(--white);
+    background: 
+        linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="contact-pattern" patternUnits="userSpaceOnUse" width="50" height="50"><circle cx="25" cy="25" r="1.5" fill="%23d4af37" opacity="0.02"/><circle cx="10" cy="10" r="0.8" fill="%23f4a6cd" opacity="0.02"/><circle cx="40" cy="40" r="0.8" fill="%23e5e4e2" opacity="0.02"/><circle cx="10" cy="40" r="0.5" fill="%23d4af37" opacity="0.015"/><circle cx="40" cy="10" r="0.5" fill="%23f4a6cd" opacity="0.015"/></pattern></defs><rect width="100%" height="100%" fill="url(%23contact-pattern)"/></svg>');
     position: relative;
-    overflow: hidden;
+    color: var(--text-primary);
 }
 
 .contact::before {
@@ -1096,15 +1242,35 @@ p {
 .footer-brand p {
     color: var(--text-secondary);
     line-height: 1.7;
-    margin-bottom: var(--spacing-2xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.footer-contact {
+    margin-bottom: var(--spacing-xl);
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.contact-info-item i {
+    color: var(--accent-gold);
+    width: 16px;
+    text-align: center;
 }
 
 .social-links {
     display: flex;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
 }
 
-.social-links a {
+.social-link {
     width: 45px;
     height: 45px;
     background: var(--glass-bg);
@@ -1117,12 +1283,35 @@ p {
     color: var(--text-secondary);
     text-decoration: none;
     transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
 }
 
-.social-links a:hover {
+.social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: linear-gradient(135deg, var(--accent-gold), var(--accent-rose));
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.social-link:hover {
     color: var(--white);
     transform: translateY(-3px);
+    border-color: var(--accent-gold);
+}
+
+.social-link:hover::before {
+    opacity: 1;
+}
+
+.social-link i {
+    position: relative;
+    z-index: 1;
 }
 
 .footer-column h4 {
@@ -1145,10 +1334,26 @@ p {
     text-decoration: none;
     transition: var(--transition-normal);
     font-size: var(--font-size-sm);
+    position: relative;
+}
+
+.footer-column ul li a::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent-gold);
+    transition: width var(--transition-normal);
 }
 
 .footer-column ul li a:hover {
     color: var(--accent-gold);
+}
+
+.footer-column ul li a:hover::before {
+    width: 100%;
 }
 
 .footer-bottom {
@@ -1157,6 +1362,12 @@ p {
     border-top: 1px solid var(--gray-200);
     color: var(--text-muted);
     font-size: var(--font-size-sm);
+}
+
+.footer-connect {
+    margin-top: var(--spacing-sm);
+    font-weight: 500;
+    color: var(--accent-gold);
 }
 
 /* Animations */
@@ -1232,6 +1443,12 @@ p {
     .testimonials-grid {
         grid-template-columns: 1fr;
     }
+    
+    .service-header {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-md);
+    }
 }
 
 @media (max-width: 768px) {
@@ -1249,6 +1466,10 @@ p {
     
     .hero-subtitle {
         font-size: var(--font-size-lg);
+    }
+    
+    .hero-tagline {
+        font-size: var(--font-size-base);
     }
     
     .hero-cta {
@@ -1277,6 +1498,14 @@ p {
     .contact {
         padding: var(--spacing-3xl) 0;
     }
+    
+    .mockup-screen {
+        width: 280px;
+    }
+    
+    .service-card {
+        padding: var(--spacing-xl);
+    }
 }
 
 @media (max-width: 480px) {
@@ -1304,6 +1533,18 @@ p {
     
     .contact-form {
         padding: var(--spacing-xl);
+    }
+    
+    .mockup-screen {
+        width: 250px;
+    }
+    
+    .mockup-content {
+        padding: var(--spacing-lg);
+    }
+    
+    .social-links {
+        justify-content: center;
     }
 }
 
