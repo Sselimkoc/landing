@@ -1,17 +1,17 @@
-// Main JavaScript for Business Website Template
+// Premium Business Website Template - JavaScript
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Header scroll effect
-  const header = document.getElementById("header");
+  // Navigation scroll effect
+  const navbar = document.getElementById("navbar");
   let lastScrollTop = 0;
 
   window.addEventListener("scroll", function () {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    if (scrollTop > 50) {
-      header.classList.add("scrolled");
+    if (scrollTop > 100) {
+      navbar.classList.add("scrolled");
     } else {
-      header.classList.remove("scrolled");
+      navbar.classList.remove("scrolled");
     }
 
     lastScrollTop = scrollTop;
@@ -19,16 +19,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Mobile menu toggle
   const navToggle = document.getElementById("nav-toggle");
-  const navMenu = document.querySelector(".nav-menu");
+  const navLinks = document.querySelector(".nav-links");
 
-  if (navToggle && navMenu) {
+  if (navToggle && navLinks) {
     navToggle.addEventListener("click", function () {
-      navMenu.classList.toggle("active");
+      navLinks.classList.toggle("active");
 
       // Animate hamburger menu
       const bars = navToggle.querySelectorAll(".bar");
       bars.forEach((bar, index) => {
-        if (navMenu.classList.contains("active")) {
+        if (navLinks.classList.contains("active")) {
           if (index === 0)
             bar.style.transform = "rotate(45deg) translate(5px, 5px)";
           if (index === 1) bar.style.opacity = "0";
@@ -42,10 +42,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Close mobile menu when clicking on a link
-    const navLinks = document.querySelectorAll(".nav-link");
-    navLinks.forEach((link) => {
+    const navLinksItems = document.querySelectorAll(".nav-links a");
+    navLinksItems.forEach((link) => {
       link.addEventListener("click", function () {
-        navMenu.classList.remove("active");
+        navLinks.classList.remove("active");
         const bars = navToggle.querySelectorAll(".bar");
         bars.forEach((bar) => {
           bar.style.transform = "none";
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const targetSection = document.querySelector(targetId);
 
       if (targetSection) {
-        const headerHeight = header.offsetHeight;
+        const headerHeight = navbar.offsetHeight;
         const targetPosition = targetSection.offsetTop - headerHeight;
 
         window.scrollTo({
@@ -77,16 +77,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Scroll animations
+  // Enhanced scroll animations with Intersection Observer
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
+    rootMargin: "0px 0px -100px 0px",
   };
 
   const observer = new IntersectionObserver(function (entries) {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("fade-in-up");
+        entry.target.classList.add("visible");
         observer.unobserve(entry.target);
       }
     });
@@ -94,13 +94,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Observe elements for animation
   const animateElements = document.querySelectorAll(
-    ".service-card, .testimonial-card, .about-content, .contact-content"
+    ".fade-in, .service-card, .testimonial-card, .portfolio-item, .about-content, .contact-content"
   );
   animateElements.forEach((el) => {
     observer.observe(el);
   });
 
-  // Counter animation for stats
+  // Counter animation for stats with enhanced timing
   const stats = document.querySelectorAll(".stat-number");
   const statsObserver = new IntersectionObserver(
     function (entries) {
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (entry.isIntersecting) {
           const target = entry.target;
           const finalValue = parseInt(target.textContent);
-          animateCounter(target, 0, finalValue, 2000);
+          animateCounter(target, 0, finalValue, 2500);
           statsObserver.unobserve(target);
         }
       });
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 16);
   }
 
-  // Contact form handling
+  // Enhanced contact form handling
   const contactForm = document.getElementById("contactForm");
 
   if (contactForm) {
@@ -153,10 +153,11 @@ document.addEventListener("DOMContentLoaded", function () {
         formObject[key] = value;
       });
 
-      // Show loading state
+      // Show loading state with enhanced animation
       const submitBtn = this.querySelector('button[type="submit"]');
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = "Sending...";
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML =
+        '<span>Sending...</span><i class="fas fa-spinner fa-spin"></i>';
       submitBtn.disabled = true;
 
       // Simulate form submission (replace with actual form handling)
@@ -170,14 +171,14 @@ document.addEventListener("DOMContentLoaded", function () {
         // Reset form
         contactForm.reset();
 
-        // Reset button
-        submitBtn.textContent = originalText;
+        // Reset button with smooth transition
+        submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
       }, 2000);
     });
   }
 
-  // Notification system
+  // Enhanced notification system
   function showNotification(message, type = "info") {
     const notification = document.createElement("div");
     notification.className = `notification notification-${type}`;
@@ -188,76 +189,87 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         `;
 
-    // Add styles
+    // Add enhanced styles
     notification.style.cssText = `
             position: fixed;
             top: 20px;
             right: 20px;
-            background: ${type === "success" ? "#10b981" : "#3b82f6"};
+            background: ${
+              type === "success"
+                ? "linear-gradient(135deg, #10b981, #059669)"
+                : "linear-gradient(135deg, #3b82f6, #2563eb)"
+            };
             color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
             z-index: 10000;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
+            transform: translateX(100%) scale(0.8);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         `;
 
     document.body.appendChild(notification);
 
-    // Animate in
+    // Animate in with bounce effect
     setTimeout(() => {
-      notification.style.transform = "translateX(0)";
+      notification.style.transform = "translateX(0) scale(1)";
     }, 100);
 
     // Close button functionality
     const closeBtn = notification.querySelector(".notification-close");
     closeBtn.addEventListener("click", () => {
-      notification.style.transform = "translateX(100%)";
+      notification.style.transform = "translateX(100%) scale(0.8)";
       setTimeout(() => {
-        document.body.removeChild(notification);
-      }, 300);
+        if (document.body.contains(notification)) {
+          document.body.removeChild(notification);
+        }
+      }, 400);
     });
 
-    // Auto remove after 5 seconds
+    // Auto remove after 6 seconds
     setTimeout(() => {
       if (document.body.contains(notification)) {
-        notification.style.transform = "translateX(100%)";
+        notification.style.transform = "translateX(100%) scale(0.8)";
         setTimeout(() => {
           if (document.body.contains(notification)) {
             document.body.removeChild(notification);
           }
-        }, 300);
+        }, 400);
       }
-    }, 5000);
+    }, 6000);
   }
 
-  // Parallax effect for hero section
+  // Enhanced parallax effect for floating elements
   const heroSection = document.querySelector(".hero");
-  const floatingCards = document.querySelectorAll(".floating-card");
+  const floatingElements = document.querySelectorAll(".floating-element");
 
-  if (heroSection && floatingCards.length > 0) {
+  if (heroSection && floatingElements.length > 0) {
     window.addEventListener("scroll", function () {
       const scrolled = window.pageYOffset;
-      const rate = scrolled * -0.5;
+      const rate = scrolled * -0.3;
 
-      floatingCards.forEach((card, index) => {
-        const speed = 0.5 + index * 0.1;
-        card.style.transform = `translateY(${rate * speed}px)`;
+      floatingElements.forEach((element, index) => {
+        const speed = 0.3 + index * 0.1;
+        const rotation = scrolled * 0.02;
+        element.style.transform = `translateY(${
+          rate * speed
+        }px) rotate(${rotation}deg)`;
       });
     });
   }
 
-  // Active navigation highlighting
+  // Active navigation highlighting with smooth transitions
   const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".nav-link");
+  const navLinks = document.querySelectorAll(".nav-links a");
 
   window.addEventListener("scroll", function () {
     let current = "";
-    const headerHeight = header.offsetHeight;
+    const headerHeight = navbar.offsetHeight;
 
     sections.forEach((section) => {
-      const sectionTop = section.offsetTop - headerHeight - 100;
+      const sectionTop = section.offsetTop - headerHeight - 150;
       const sectionHeight = section.offsetHeight;
 
       if (
@@ -273,6 +285,30 @@ document.addEventListener("DOMContentLoaded", function () {
       if (link.getAttribute("href") === `#${current}`) {
         link.classList.add("active");
       }
+    });
+  });
+
+  // Enhanced hover effects for service cards
+  const serviceCards = document.querySelectorAll(".service-card");
+  serviceCards.forEach((card) => {
+    card.addEventListener("mouseenter", function () {
+      this.style.transform = "translateY(-12px) scale(1.02)";
+    });
+
+    card.addEventListener("mouseleave", function () {
+      this.style.transform = "translateY(0) scale(1)";
+    });
+  });
+
+  // Enhanced portfolio item interactions
+  const portfolioItems = document.querySelectorAll(".portfolio-item");
+  portfolioItems.forEach((item) => {
+    item.addEventListener("mouseenter", function () {
+      this.style.transform = "translateY(-12px) scale(1.02)";
+    });
+
+    item.addEventListener("mouseleave", function () {
+      this.style.transform = "translateY(0) scale(1)";
     });
   });
 
@@ -313,15 +349,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.addEventListener("scroll", debouncedScrollHandler);
 
-  // Add CSS for active navigation state
+  // Enhanced CSS for active navigation state and notifications
   const style = document.createElement("style");
   style.textContent = `
-        .nav-link.active {
-            color: var(--primary-color) !important;
+        .nav-links a.active {
+            color: var(--accent-gold) !important;
         }
         
-        .nav-link.active::after {
-            width: 100% !important;
+        .nav-links a.active::before {
+            opacity: 1 !important;
         }
         
         .notification-content {
@@ -338,15 +374,51 @@ document.addEventListener("DOMContentLoaded", function () {
             cursor: pointer;
             padding: 0;
             line-height: 1;
+            transition: all 0.3s ease;
         }
         
         .notification-close:hover {
             opacity: 0.8;
+            transform: scale(1.1);
+        }
+        
+        .service-card,
+        .portfolio-item,
+        .testimonial-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .floating-element {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .hero-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hero-card:hover {
+            transform: translateX(-15px) scale(1.05);
+        }
+        
+        .floating-badge {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .floating-badge:hover {
+            transform: scale(1.1) rotate(5deg);
         }
     `;
   document.head.appendChild(style);
 
-  // Initialize tooltips (if needed)
+  // Enhanced tooltips (if needed)
   const tooltipElements = document.querySelectorAll("[data-tooltip]");
   tooltipElements.forEach((element) => {
     element.addEventListener("mouseenter", function () {
@@ -355,14 +427,20 @@ document.addEventListener("DOMContentLoaded", function () {
       tooltip.textContent = this.getAttribute("data-tooltip");
       tooltip.style.cssText = `
                 position: absolute;
-                background: var(--gray-900);
+                background: var(--primary-dark);
                 color: white;
-                padding: 0.5rem;
-                border-radius: 0.25rem;
+                padding: 0.75rem 1rem;
+                border-radius: 0.5rem;
                 font-size: 0.875rem;
                 z-index: 1000;
                 pointer-events: none;
                 white-space: nowrap;
+                box-shadow: var(--shadow-premium);
+                backdrop-filter: blur(10px);
+                border: 1px solid var(--glass-border);
+                transform: translateY(10px);
+                opacity: 0;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             `;
 
       document.body.appendChild(tooltip);
@@ -370,15 +448,54 @@ document.addEventListener("DOMContentLoaded", function () {
       const rect = this.getBoundingClientRect();
       tooltip.style.left =
         rect.left + rect.width / 2 - tooltip.offsetWidth / 2 + "px";
-      tooltip.style.top = rect.top - tooltip.offsetHeight - 5 + "px";
+      tooltip.style.top = rect.top - tooltip.offsetHeight - 10 + "px";
+
+      // Animate in
+      setTimeout(() => {
+        tooltip.style.transform = "translateY(0)";
+        tooltip.style.opacity = "1";
+      }, 10);
 
       this.addEventListener("mouseleave", function () {
-        if (document.body.contains(tooltip)) {
-          document.body.removeChild(tooltip);
-        }
+        tooltip.style.transform = "translateY(10px)";
+        tooltip.style.opacity = "0";
+        setTimeout(() => {
+          if (document.body.contains(tooltip)) {
+            document.body.removeChild(tooltip);
+          }
+        }, 300);
       });
     });
   });
 
-  console.log("Business Website Template loaded successfully!");
+  // Enhanced form validation with visual feedback
+  const formInputs = document.querySelectorAll(
+    ".form-group input, .form-group textarea, .form-group select"
+  );
+  formInputs.forEach((input) => {
+    input.addEventListener("focus", function () {
+      this.parentElement.style.transform = "scale(1.02)";
+    });
+
+    input.addEventListener("blur", function () {
+      this.parentElement.style.transform = "scale(1)";
+    });
+  });
+
+  // Smooth reveal animation for hero elements
+  const heroElements = document.querySelectorAll(
+    ".hero-badge, .hero-title, .hero-subtitle, .hero-cta"
+  );
+  heroElements.forEach((element, index) => {
+    element.style.opacity = "0";
+    element.style.transform = "translateY(30px)";
+
+    setTimeout(() => {
+      element.style.transition = "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)";
+      element.style.opacity = "1";
+      element.style.transform = "translateY(0)";
+    }, index * 200);
+  });
+
+  console.log("Premium Business Website Template loaded successfully! 🚀");
 });

@@ -86,6 +86,7 @@ public
 # Temporary folders
 tmp/
 temp/
+new_layouts/
 
 # Logs
 logs
