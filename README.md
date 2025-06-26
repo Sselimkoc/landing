@@ -2,8 +2,6 @@
 
 A sophisticated, modern business website template inspired by premium design trends. This template combines elegant aesthetics with cutting-edge functionality to create exceptional digital experiences.
 
-![Luminary Template Preview](https://via.placeholder.com/800x400/1a1a1a/ffffff?text=Luminary+Premium+Template)
-
 ## ✨ Features
 
 ### 🎨 **Premium Design**
